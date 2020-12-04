@@ -30,7 +30,7 @@ const part1 = () => {
 const part2 = () => {
     let jumps = [{ rightJump: 1, downJump: 1 }, { rightJump: 3, downJump: 1 }, { rightJump: 5, downJump: 1 }, { rightJump: 7, downJump: 1 }, { rightJump: 1, downJump: 2 }];
     let result = traverseHill(jumps);
-    return result.reduce((a , b) => a*b);
+    return result.reduce((a, b) => a * b);
 }
 
 
