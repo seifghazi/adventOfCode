@@ -17,13 +17,13 @@ const passportCheck = (filteringInvalidEntries) => {
                 let splitEntry = entry.split(':');
                 const [attr, value] = splitEntry;
                 const isEntryValid = isValidAttribute(attr, value);
+                
                 if (filteringInvalidEntries && !isEntryValid) continue;
                 entrySet.add(attr);
             }
         }
 
-        if (entrySet.size == 8) numValid++;
-        if (entrySet.size == 7 && !entrySet.has('cid')) numValid++;
+        if (entrySet.size == 8 || entrySet.size == 7 && !entrySet.has('cid')) numValid++;
         entrySet.clear();
     }
     return numValid;
@@ -40,11 +40,11 @@ function isValidAttribute(attr, value) {
         case 'hgt':
             let units = value.slice(-2);
             let height = parseInt(value.slice(0, value.length - 2));
-            if (units == "cm") return height >= 150 && height <= 193;
-            if (units == "in") return height >= 59 && height <= 76;
+            if (units === "cm") return height >= 150 && height <= 193;
+            if (units === "in") return height >= 59 && height <= 76;
             break;
         case 'hcl':
-            const regExp = /#([0-9]|[a-f])([0-9]|[a-f])([0-9]|[a-f])([0-9]|[a-f])([0-9]|[a-f])([0-9]|[a-f])/g;
+            const regExp = /#([0-9]|[a-f]){6}/g;
             return value.match(regExp) != null;
         case 'ecl':
             return value == 'amb' || value == 'blu' || value == 'brn' || value == 'gry' || value == 'grn' || value == 'hzl' || value == 'oth';
