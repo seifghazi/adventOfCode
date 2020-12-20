@@ -7,7 +7,7 @@ let numPeopleInGroup = 0;
 let acc = 0;
 for (let i = 0; i < responses.length; i++) {
     const response = responses[i];
-    
+    // populate map for reach group with freq of yes answers per question
     if (response) {
         numPeopleInGroup++;
         for (char of response) {
@@ -17,7 +17,7 @@ for (let i = 0; i < responses.length; i++) {
     }
     
     if (response === '' || i == responses.length - 1) {
-        console.log(questionSet, numPeopleInGroup);
+        // if number of yesses === numPeopleInGroup, we've got 1 answer
         for (question in questionSet) {
             if (questionSet[question] === numPeopleInGroup) acc++;
         }
